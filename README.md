@@ -11,7 +11,7 @@ Certifique-se de ter o Node.js e o npm instalados. Pode baixá-los e instalá-lo
 1. **Fazer Clone ao Repositório**
 
 ```bash
-git clone https://github.com/t8ne/eu-compro
+git clone https://github.com/t2ne/eu-compro
 ```
 
 2. **Instalar Ionic CLI**
@@ -34,3 +34,7 @@ npm install -g @ionic/cli @angular/cli cordova-res
   npm install @capacitor-mlkit/barcode-scanning
   npm install @capacitor/camera
   ```
+
+## Autor
+
+- t2ne
