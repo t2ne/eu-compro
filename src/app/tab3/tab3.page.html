@@ -1,0 +1,229 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Pesquisar
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notificacoes">
+        <ion-icon
+          class="notificacoes"
+          name="notifications-circle-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/settings">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="search-container">
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionInput)="filterItems($event)"
+      placeholder="Pesquisar por produtos"
+      (ionClear)="clearSearch()"
+    ></ion-searchbar>
+  </div>
+
+  <div *ngIf="recentSearches.length > 0" class="recent-searches">
+    <h2>Pesquisado recentemente</h2>
+    <ion-list>
+      <ion-item *ngFor="let search of recentSearches">
+        <ion-label>{{ search }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="searchResults.length > 0" class="search-results">
+    <ion-list>
+      <ion-item
+        *ngFor="let result of searchResults"
+        (click)="selectItem(result)"
+      >
+        <ion-label>{{ result.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="showGrid" class="product-grid">
+    <ion-grid>
+      <ion-row class="center-content">
+        <ion-col size="8" *ngFor="let product of filteredProducts">
+          <ion-card (click)="showProductDetails(product)">
+            <img [src]="product.image" alt="{{ product.name }}" />
+            <ion-card-header>
+              <ion-card-title>{{ product.name }}</ion-card-title>
+              <ion-card-subtitle>{{ product.preco }}€</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <div class="modal-wrapper">
+        <h3 class="modal-title">Adicionar Produto?</h3>
+        <img
+          [src]="selectedProduct?.image"
+          alt="{{ selectedProduct?.name }}"
+          class="product-image"
+        />
+        <h4
+          style="
+            font-size: 23px;
+            font-weight: bold;
+            margin-top: 17px;
+            margin-bottom: 17px;
+          "
+        >
+          {{ selectedProduct?.name }}
+          <span style="color: red">({{ selectedProduct?.preco }}€)</span>
+        </h4>
+        <hr />
+        <div class="info-row">
+          <p class="info-title">Supermercado:</p>
+          <p class="info-value">{{ selectedProduct?.supermercado }}</p>
+        </div>
+        <hr />
+        <div class="info-row">
+          <p class="info-title">Quantidade:</p>
+          <div class="quantity-controls">
+            <ion-button size="small" (click)="decrementQuantity()"
+              >-</ion-button
+            >
+            <ion-input
+              type="number"
+              min="1"
+              [(ngModel)]="selectedProduct.quantity"
+              inputmode="numeric"
+            ></ion-input>
+            <ion-button size="small" (click)="incrementQuantity()"
+              >+</ion-button
+            >
+          </div>
+        </div>
+        <hr />
+        <div class="info-row">
+          <p class="info-title">Lista:</p>
+          <ion-select [(ngModel)]="selectedList" class="modal-value">
+            <ion-select-option *ngFor="let list of lists" [value]="list.id">
+              {{ list.name }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+        <div class="modal-buttons">
+          <ion-button color="success" (click)="addProductToList()"
+            >✔</ion-button
+          >
+          <ion-button color="danger" (click)="closeModal()">✖</ion-button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<style>
+  hr {
+    border: 2px gray solid;
+    border-radius: 1px;
+    opacity: 25%;
+  }
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-container {
+    padding: 16px;
+  }
+
+  .recent-searches {
+    padding: 16px;
+  }
+
+  .search-results {
+    padding: 16px;
+  }
+
+  .product-grid {
+    padding: 16px;
+  }
+
+  .modal-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .modal-wrapper {
+    padding: 16px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .modal-wrapper img.product-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 25px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16px;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 17px;
+    margin-bottom: 17px;
+  }
+
+  .info-title {
+    flex: 1;
+    text-align: left;
+  }
+
+  .info-value {
+    flex: 1;
+    text-align: right;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-controls ion-button {
+    margin: 0;
+  }
+
+  ion-input {
+    margin: 0 5px;
+    text-align: center;
+    max-width: 50px; /* Ensures the input doesn't get too wide */
+  }
+
+  ion-select.modal-value {
+    width: auto;
+    flex-grow: 1;
+    --padding-start: 0;
+    text-align: left;
+  }
+
+  ion-select::part(text) {
+    text-align: left;
+    padding-right: -90px; /* Ensures the text does not overlap with the arrows */
+  }
+</style>

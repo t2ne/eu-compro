@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Linguagem
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/settings" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar></ion-toolbar>
+  </ion-header>
+
+  <h2 class="op">Opções de Linguagem</h2>
+
+  <ion-list>
+    <ion-radio-group value="portugues">
+      <ion-item lines="full">
+        <ion-radio
+          slot="end"
+          value="portugues"
+          aria-label="Custom checkbox"
+          checked
+          style="margin-right: 200px"
+        ></ion-radio>
+        <ion-label>Português</ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
+
+<style>
+  .op {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+    --color: #ddd;
+    --color-checked: #1552ec;
+  }
+
+  ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .radio-checked.ios::part(container) {
+    border-color: #1552ec;
+  }
+
+  ion-item {
+    --inner-padding-end: 0px;
+    --inner-padding-start: 0px;
+    --inner-border-width: 0px;
+    --border-color: #ccc;
+  }
+</style>

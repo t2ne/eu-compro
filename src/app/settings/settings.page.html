@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Definições
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      routerLink="/conta"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Conta
+    </ion-item>
+    <ion-item
+      routerLink="/transacoes"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Transações
+    </ion-item>
+    <ion-item
+      routerLink="/linguagem"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Linguagem
+    </ion-item>
+    <ion-item
+      routerLink="/desativar-conta"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Desativar Conta
+    </ion-item>
+    <ion-item
+      routerLink="/documentacao-legal"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Documentação Legal
+    </ion-item>
+    <ion-item
+      routerLink="/ajuda"
+      lines="full"
+      style="--border-color: rgba(82, 82, 82, 0.2); margin: 20px"
+    >
+      Ajuda
+    </ion-item>
+  </ion-list>
+
+  <div class="logout-button-container">
+    <ion-button expand="block" color="danger" (click)="confirmLogout()"
+      >Sair</ion-button
+    >
+  </div>
+</ion-content>
+
+<style>
+  .logout-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+</style>

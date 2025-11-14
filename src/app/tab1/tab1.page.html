@@ -1,0 +1,217 @@
+<ion-header [translucent]="true" class="no-border-android">
+  <ion-title
+    style="
+      font-weight: bold;
+      text-align: center;
+      margin-top: 2%;
+      color: rgb(209, 209, 209);
+    "
+  >
+    Início
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notificacoes">
+        <ion-icon
+          class="notificacoes"
+          name="notifications-circle-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/settings">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar
+      style="
+        --border-width: 0;
+        --ion-border-color: transparent;
+        --box-shadow: none;
+        box-shadow: none;
+        border: none;
+      "
+    ></ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <h2 class="recommendation-title">Páginas Recomendadas</h2>
+    <div class="horizontal-scroll">
+      <ion-button class="scroll-button" routerLink="/conta"
+        >Definições</ion-button
+      >
+      <ion-button class="scroll-button" routerLink="/tabs/tab3"
+        >Produtos</ion-button
+      >
+      <ion-button class="scroll-button" routerLink="/tabs/tab2"
+        >Listas</ion-button
+      >
+      <ion-button class="scroll-button" routerLink="/transacoes"
+        >Transações</ion-button
+      >
+    </div>
+
+    <ion-button expand="block" routerLink="/tabs/tab4" class="promo-button">
+      Ver as Promoções mais Recentes
+    </ion-button>
+
+    <h2 class="store-list-title">Mais lojas em Viana do Castelo</h2>
+    <ion-list>
+      <ion-item button detail>
+        <ion-icon
+          name="storefront-outline"
+          slot="start"
+          style="
+            color: green;
+            -border-color: rgba(189, 189, 189, 0.338);
+            margin-top: 20px;
+          "
+        ></ion-icon>
+        <ion-label>Pingo Doce</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon
+          name="storefront-outline"
+          slot="start"
+          style="
+            color: red;
+            -border-color: rgba(189, 189, 189, 0.338);
+            margin-top: 20px;
+          "
+        ></ion-icon>
+        <ion-label>Continente</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon
+          name="storefront-outline"
+          slot="start"
+          style="
+            color: blue;
+            -border-color: rgba(189, 189, 189, 0.338);
+            margin-top: 20px;
+          "
+        ></ion-icon>
+        <ion-label>LIDL</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon
+          name="storefront-outline"
+          slot="start"
+          style="
+            color: purple;
+            -border-color: rgba(189, 189, 189, 0.338);
+            margin-top: 20px;
+          "
+        ></ion-icon>
+        <ion-label>Auchan</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <h2 class="store-list-title2">Verificar Preços entre Produtos</h2>
+
+  <ion-button expand="block" routerLink="/tabs/tab5" class="promo-button2">
+    Ver a Comparação de Preços
+  </ion-button>
+
+  <div class="footer">
+    <p>EuCompro</p>
+  </div>
+</ion-content>
+
+<style>
+  .no-border-android ion-toolbar {
+    --border-width: 0 !important;
+    --ion-border-color: transparent !important;
+    --box-shadow: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .no-border-android ion-header {
+    --ion-border-color: transparent !important;
+    border: none !important;
+  }
+
+  .content-container {
+    padding: 16px;
+  }
+
+  .recommendation-title {
+    font-size: 20px;
+    margin-top: -5px;
+    margin-bottom: 25px;
+    color: darkgray;
+  }
+
+  .horizontal-scroll {
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 25px;
+  }
+
+  .scroll-button {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    --border-radius: 8px;
+    --background: #f4f4f4;
+    --color: #333;
+  }
+
+  .promo-button {
+    --background: linear-gradient(#fbc02d, #ffeb3b);
+    font-weight: bold;
+    color: #000;
+    margin-top: 30px 0;
+    margin-bottom: 30px 0;
+  }
+
+  .promo-button2 {
+    --background: linear-gradient(#fbc02d, #ffeb3b);
+    font-weight: bold;
+    color: #000;
+    margin: 20px;
+  }
+
+  .store-list-title {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: rgb(92, 92, 92);
+  }
+
+  .store-list-title2 {
+    font-size: 20px;
+    margin-top: -10px;
+    margin: 20px;
+    color: rgb(92, 92, 92);
+  }
+
+  ion-list ion-item {
+    --background: #fff;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  ion-list ion-item ion-icon {
+    margin-right: 10px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .footer p {
+    font-size: 14px;
+  }
+</style>

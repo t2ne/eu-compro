@@ -1,0 +1,120 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Pagar
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Pagamento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="payment-options">
+        <div class="payment-option" (click)="onImageClick($event)">
+          <img src="assets/background/shop-pay.png" alt="Shop Pay" />
+        </div>
+        <div class="payment-option" (click)="onImageClick($event)">
+          <img src="assets/background/google-pay.png" alt="Google Pay" />
+        </div>
+        <div class="payment-option" (click)="onImageClick($event)">
+          <img src="assets/background/apple-pay.png" alt="Apple Pay" />
+        </div>
+      </div>
+      <ion-card-title style="margin-top: 20px">Nome</ion-card-title>
+      <ion-item>
+        <ion-label position="floating">Primeiro Nome</ion-label>
+        <ion-input [(ngModel)]="firstName" required></ion-input>
+      </ion-item>
+      <div *ngIf="firstNameError" class="error-message">
+        Preencha este campo.
+      </div>
+      <ion-item>
+        <ion-label position="floating">Último Nome</ion-label>
+        <ion-input [(ngModel)]="lastName" required></ion-input>
+      </ion-item>
+      <div *ngIf="lastNameError" class="error-message">
+        Preencha este campo.
+      </div>
+      <ion-card-title style="margin-top: 20px">Morada</ion-card-title>
+      <ion-item>
+        <ion-label position="floating">Endereço Linha 1</ion-label>
+        <ion-input [(ngModel)]="addressLine1" required></ion-input>
+      </ion-item>
+      <div *ngIf="addressLine1Error" class="error-message">
+        Preencha este campo.
+      </div>
+      <ion-item>
+        <ion-label position="floating">Endereço Linha 2</ion-label>
+        <ion-input [(ngModel)]="addressLine2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input [(ngModel)]="city" required></ion-input>
+      </ion-item>
+      <div *ngIf="cityError" class="error-message">Preencha este campo.</div>
+      <ion-item>
+        <ion-label position="floating">Código Postal</ion-label>
+        <ion-input [(ngModel)]="postalCode" required></ion-input>
+      </ion-item>
+      <div *ngIf="postalCodeError" class="error-message">
+        Preencha este campo.
+      </div>
+      <ion-button expand="block" (click)="submitProposal()"
+        >Enviar Proposta</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<style>
+  .payment-options {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+
+  .payment-option {
+    flex: 0 0 auto;
+    padding: 0 10px;
+    transition: transform 0.2s;
+  }
+
+  .payment-option:active {
+    transform: scale(0.95);
+  }
+
+  .payment-option img {
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  ion-card-title,
+  ion-card-subtitle {
+    text-align: center;
+  }
+
+  ion-item {
+    --background: #f9f9f9;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+
+  ion-button {
+    margin-top: 20px;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+</style>

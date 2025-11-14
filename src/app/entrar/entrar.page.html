@@ -1,0 +1,90 @@
+<ion-header [translucent]="true"> </ion-header>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 16px;
+    background-color: #f8f8f8; /* Cor de fundo clara */
+    background-size: cover;
+    font-family: "Roboto", Arial, sans-serif;
+  }
+
+  .logo {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 32px;
+  }
+
+  ion-item {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 16px;
+    --background: transparent;
+  }
+
+  ion-input {
+    --padding-start: 0px;
+  }
+
+  ion-button {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 16px;
+    --background: #ff5722; /* Cor laranja */
+    --background-hover: #e64a19;
+    --background-activated: #d84315;
+  }
+
+  .register-link {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+  }
+
+  .eucompro {
+    font-size: 48px; /* Tamanho do texto maior para o título */
+    font-weight: bold;
+    margin-bottom: 24px;
+    margin-top: -40px; /* Ajusta a posição para cima */
+    text-align: center;
+    color: #000;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<ion-content>
+  <div class="container">
+    <p class="eucompro">EUCOMPRO</p>
+    <ion-item>
+      <ion-input
+        placeholder="Email"
+        type="email"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
+    <ion-item>
+      <ion-input
+        placeholder="Palavra-passe"
+        type="password"
+        [(ngModel)]="password"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
+    <ion-button expand="block" (click)="login()">Entrar</ion-button>
+    <p class="register-link" routerLink="/criarconta">Não tens conta?</p>
+  </div>
+</ion-content>

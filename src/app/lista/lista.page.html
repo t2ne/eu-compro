@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Lista
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2" text="Atrás"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToPagar()">
+        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="list-info">
+    <h2>{{ currentList?.name }}</h2>
+    <p *ngIf="currentList?.items">
+      {{ getTotalQuantity(currentList) }} produtos - {{
+      calculateSubtotal(currentList) | currency: 'EUR' }}
+    </p>
+  </div>
+  <ion-list *ngIf="currentList?.items">
+    <ion-item-sliding *ngFor="let item of currentList.items" #slidingItem>
+      <ion-item-options side="start">
+        <ion-item-option (click)="updateItemQuantity(item)">
+          <ion-icon slot="top" name="pencil"></ion-icon>
+          Quantidade
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteItem(item)">
+          <ion-icon slot="top" name="trash"></ion-icon>
+          Eliminar
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-note slot="end">{{ item.preco | currency: 'EUR' }}</ion-note>
+        <ion-note slot="end">x{{ item.quantity }}</ion-note>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab
+    style="margin-bottom: 10px"
+    vertical="bottom"
+    horizontal="center"
+    slot="fixed"
+  >
+    <ion-fab-button (click)="openCamera()">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<style>
+  .list-info {
+    padding: 16px;
+    text-align: center;
+  }
+
+  ion-note {
+    margin-left: 10px;
+  }
+</style>

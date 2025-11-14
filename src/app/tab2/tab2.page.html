@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Listas
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notificacoes">
+        <ion-icon
+          class="notificacoes"
+          name="notifications-circle-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/settings">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="padding: 16px">
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      (ionInput)="filterLists()"
+      placeholder="Pesquisar listas"
+    ></ion-searchbar>
+    <p style="margin: 0; padding: 8px 0; color: gray; font-size: 14px">
+      Criadas recentemente
+    </p>
+  </div>
+
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+    <ion-list>
+      <ion-item-sliding
+        *ngFor="let list of filteredLists; let i = index"
+        #slidingItem
+      >
+        <ion-item-options side="start">
+          <ion-item-option color="primary" (click)="presentRenamePrompt(list)">
+            <ion-icon slot="top" name="pencil"></ion-icon>
+            Renomear
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="confirmDeleteList(list)">
+            <ion-icon slot="top" name="trash"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item
+          (click)="openList(list.id)"
+          (contextmenu)="openActionSheet(list); $event.preventDefault()"
+        >
+          <ion-label>
+            <h2>{{ list.name }}</h2>
+            <p>{{ list.totalQuantity }} produtos</p>
+          </ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-reorder-group>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="presentPrompt()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

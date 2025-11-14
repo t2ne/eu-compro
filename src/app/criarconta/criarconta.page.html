@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <ion-title style="font-weight: bold; text-align: center; margin-top: 2%">
+    Criar Conta
+  </ion-title>
+  <ion-toolbar style="--border-width: 0">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/entrar" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 16px;
+    background-color: #f8f8f8; /* Cor de fundo clara */
+    background-size: cover;
+    font-family: "Roboto", Arial, sans-serif;
+  }
+
+  ion-item {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 16px;
+    --background: transparent;
+  }
+
+  ion-input {
+    --padding-start: 0px;
+  }
+
+  ion-button {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 16px;
+    --background: #ff5722; /* Cor laranja */
+    --background-hover: #e64a19;
+    --background-activated: #d84315;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
+  .info-message {
+    color: rgb(144, 144, 144);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 23px;
+    font-weight: bold;
+  }
+</style>
+
+<ion-content>
+  <div class="container">
+    <ion-item>
+      <ion-input
+        placeholder="Email"
+        type="email"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="emailError" class="error-message">{{ emailErrorMessage }}</div>
+    <ion-item>
+      <ion-input
+        placeholder="Palavra-passe"
+        type="password"
+        [(ngModel)]="password"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="passwordError" class="error-message">
+      {{ passwordErrorMessage }}
+    </div>
+    <ion-button expand="block" (click)="createAccount()"
+      >Criar Conta</ion-button
+    >
+    <div class="info-message">
+      Se ao carregar no botão "Criar Conta" nenhum erro aparecer porém não
+      entrar na aplicação, o seu email já está a ser utilizado.
+    </div>
+  </div>
+</ion-content>
